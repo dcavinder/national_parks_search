@@ -10,58 +10,69 @@
 */
 
 //Global vars
-var searchBtn = document.querySelector("#searchBtn") //Need to link to the class/ID of button
-var userSearch = document.getElementById("mainSearch") //Need to link to the input id
-var pastSearches = []
+var searchBtn = document.querySelector("#searchBtn"); //Need to link to the class/ID of button
+var userSearch = document.getElementById("mainSearch"); //Need to link to the input id
+var pastSearches = [];
 
 //Error message code.
 function tryAgain() {
-    var errorMsg = document.createElement("p")
-    errorMsg.classList.add("errorMessage")
-    errorMsg.innerHTML = "Sorry, please input a valid request."
-    $('#submissionSection').append(errorMsg)
-    }
+    var errorMsg = document.createElement("p");
+    errorMsg.classList.add("errorMessage");
+    errorMsg.innerHTML = "Sorry, please input a valid request.";
+    $('#submissionSection').append(errorMsg);
+    };
 
 //Function for form + Saves the input to local 
 function parkSearch() {
     console.log(userSearch.value); //test to make sure we are getting the specific user earch value //Works
 
+    //Error message 
     if (userSearch.value === "Search a location" || !userSearch.value) {
-        tryAgain()
-        return
-    }  
+        tryAgain();
+        return;
+    };
 
-    var requestParksInfo = "https://developer.nps.gov/api/v1/parks?q=" + userSearch.value + "&api_key=bHs0Q9w8lnRTDFP2HjYarQQNliJq6mm7aFKTeF54" //basic test url. Need to figure out way to insert the user search. 
+    var requestParksInfo = "https://developer.nps.gov/api/v1/parks?q=" + userSearch.value + "&api_key=bHs0Q9w8lnRTDFP2HjYarQQNliJq6mm7aFKTeF54"; //basic test url. Need to figure out way to insert the user search. 
 
     fetch(requestParksInfo) 
     .then(function (response) {
         return response.json();
     })    
     .then(function (data){
-        console.log(data)
+        console.log(data);
+        console.log(data.data[0].fullName)
     }) 
     
+    //Store past searches
     .then( function saveSearch() {
-        
-        localStorage.setItem("prevArea", userSearch.value)
+        pastSearches.push(userSearch.value);
+        console.log(pastSearches);
+        localStorage.setItem("prevArea", JSON.stringify(pastSearches));
     })
     
-    //.then(window.location.href = "./results.html")
-    
-} 
+    //.then(window.location.href = "./results.html");
+};
 
-/* //Store past searches
-localStorage.setItem("pastSearch", userSearch.val())
-
-//Call past searches from LS
-function int(){
-    stored = JSON.parse(localStorage.getItem("pastSearch"))
+//Call past searches from LS + add drop down based on stored values
+function init(){
+    var stored = JSON.parse(localStorage.getItem("prevArea"))
     console.log(stored);
-    for (var i = 0; i < stored.length; i++) {
-        //NEED TO ADD IN HOW TO APPEND PAST SEARCHES TO THE SEACHBAR
+
+    if (stored) {
+        var dropDowns = document.createElement("datalist")
+        dropDowns.classList.add("pastCities");
+        $('#mainSearch').append(dropDowns)
+
+        for (var i = 0; i < stored.length; i++) {
+            var pastCityOpt = document.createElement("option")
+            pastCityOpt.value = stored[i]
+            $('.pastCities').append(pastCityOpt)  
+            //Items are populating but they are not visible. May need to make a new input.     
+        }
     }
-} */
+}
+//init()
 
 //Button click
-searchBtn.addEventListener("click", parkSearch)
+searchBtn.addEventListener("click", parkSearch);
 
