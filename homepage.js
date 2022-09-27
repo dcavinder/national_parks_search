@@ -10,15 +10,28 @@
 */
 
 //Global vars
-var searchBtn = document.querySelector() //Need to link to the class/ID of button
-var userSearch = document.getElementById().trim() //Need to link to the input id
+var searchBtn = document.querySelector("#searchBtn") //Need to link to the class/ID of button
+var userSearch = document.getElementById("mainSearch") //Need to link to the input id
+var pastSearches = []
 
+//Error message code.
+function tryAgain() {
+    var errorMsg = document.createElement("p")
+    errorMsg.classList.add("errorMessage")
+    errorMsg.innerHTML = "Sorry, please input a valid request."
+    $('#submissionSection').append(errorMsg)
+    }
 
-//Function for form + call API
+//Function for form + Saves the input to local 
 function parkSearch() {
-    console.log(userSearch.value); //test to make sure we are getting the specific user earch value
+    console.log(userSearch.value); //test to make sure we are getting the specific user earch value //Works
 
-    var requestParksInfo = 'https://developer.nps.gov/api/v1/parks?api_key=bHs0Q9w8lnRTDFP2HjYarQQNliJq6mm7aFKTeF54' //basic test url. Need to figure out way to insert the user search. 
+    if (userSearch.value === "Search a location" || !userSearch.value) {
+        tryAgain()
+        return
+    }  
+
+    var requestParksInfo = "https://developer.nps.gov/api/v1/parks?q=" + userSearch.value + "&api_key=bHs0Q9w8lnRTDFP2HjYarQQNliJq6mm7aFKTeF54" //basic test url. Need to figure out way to insert the user search. 
 
     fetch(requestParksInfo) 
     .then(function (response) {
@@ -26,13 +39,18 @@ function parkSearch() {
     })    
     .then(function (data){
         console.log(data)
-    })   
+    }) 
     
-    window.location.href = "./results.html"
+    .then( function saveSearch() {
+        
+        localStorage.setItem("prevArea", userSearch.value)
+    })
     
-}
+    //.then(window.location.href = "./results.html")
+    
+} 
 
-//Store past searches
+/* //Store past searches
 localStorage.setItem("pastSearch", userSearch.val())
 
 //Call past searches from LS
@@ -42,7 +60,7 @@ function int(){
     for (var i = 0; i < stored.length; i++) {
         //NEED TO ADD IN HOW TO APPEND PAST SEARCHES TO THE SEACHBAR
     }
-}
+} */
 
 //Button click
 searchBtn.addEventListener("click", parkSearch)
