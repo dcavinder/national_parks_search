@@ -1,14 +1,3 @@
-/*Psuedo code - user functionality
-- User types in box
-– User clicks search button or hits return to search
-– Seach needs to: 
-–––1) Link to next page
-–––2) Call APIs using search location
-– Store search in local storage
-– Other stuff we could do 
-–––Add in an area where they can add their name/info that we can store and have a welcome message of "Happy trails [NAME]!"
-*/
-
 //Global vars
 var searchBtn = document.querySelector("#searchBtn"); //Need to link to the class/ID of button
 var userSearch = document.getElementById("mainSearch"); //Need to link to the input id
@@ -58,21 +47,28 @@ function init(){
     var stored = JSON.parse(localStorage.getItem("prevArea"))
     console.log(stored);
 
-    if (stored) {
+    if (stored) {      
         var dropDowns = document.createElement("datalist")
-        dropDowns.classList.add("pastCities");
+        dropDowns.setAttribute("id", "pastCitiesList");
         $('#mainSearch').append(dropDowns)
 
         for (var i = 0; i < stored.length; i++) {
             var pastCityOpt = document.createElement("option")
             pastCityOpt.value = stored[i]
-            $('.pastCities').append(pastCityOpt)  
-            //Items are populating but they are not visible. May need to make a new input.     
+            pastCityOpt.innerHTML = stored[i]
+            $('#pastCitiesList').append(pastCityOpt)     
         }
     }
 }
-//init()
+init()
 
-//Button click
+//Submit via button click
 searchBtn.addEventListener("click", parkSearch);
 
+//Submit via "return"/"enter"
+userSearch.addEventListener("keypress", function(event){
+    if(window.event.keyCode == 13) {
+        event.preventDefault();
+        searchBtn.click();
+    }
+})
