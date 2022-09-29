@@ -13,15 +13,13 @@ function tryAgain() {
 
 //Function for form + Saves the input to local 
 function parkSearch() {
-    console.log(userSearch.value); //test to make sure we are getting the specific user earch value //Works
-
     //Error message 
-    if (userSearch.value === "Search a location" || !userSearch.value) {
+    if (!userSearch.value) {
         tryAgain();
         return;
     };
 
-    var requestParksInfo = "https://developer.nps.gov/api/v1/parks?q=" + userSearch.value + "&api_key=bHs0Q9w8lnRTDFP2HjYarQQNliJq6mm7aFKTeF54"; //basic test url. Need to figure out way to insert the user search. 
+    var requestParksInfo = "https://developer.nps.gov/api/v1/parks?q=" + userSearch.value + "&api_key=bHs0Q9w8lnRTDFP2HjYarQQNliJq6mm7aFKTeF54";
 
     fetch(requestParksInfo) 
     .then(function (response) {
@@ -29,7 +27,6 @@ function parkSearch() {
     })    
     .then(function (data){
         console.log(data);
-        console.log(data.data[0].fullName)
     }) 
     
     //Store past searches
@@ -39,13 +36,12 @@ function parkSearch() {
         localStorage.setItem("prevArea", JSON.stringify(pastSearches));
     })
     
-    //.then(window.location.href = "./results.html");
+    .then(window.location.href = "./results.html"); 
 };
 
 //Call past searches from LS + add drop down based on stored values
 function init(){
     var stored = JSON.parse(localStorage.getItem("prevArea"))
-    console.log(stored);
 
     if (stored) {      
         var dropDowns = document.createElement("datalist")
