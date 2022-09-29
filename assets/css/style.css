@@ -3,12 +3,18 @@
 }
 
 body {
-
-    background-image: url("./assets/images/Yosemite-National-Park_wallpaper_051.jpg");
-    background-size: cover ;
-    background-position: cover;
-    background-color: rgb(254, 254, 254);
+    display: flex;
+    background-image: url("../images/yosemite.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
 }
+
+.fa-fa-home {
+    color:white;
+    }
 
 nav {
     display: flex;
@@ -58,11 +64,6 @@ a:hover {
     text-align: center;
 }
 
-/*main {
-    
-
-}*/
-
 button {
     display: inline-block;
     margin: 5px;
@@ -97,6 +98,17 @@ li {
     display: none;
 }
   
-/*.weatherApp {
+@media only screen and (max-width: 960px) {
+    main {
+        margin: 50px
+    }
+}
 
+@media only screen and (max-width: 520px) {
+    body {
+      font-size: 125%;
+    }
+    main {
+        margin: 10px;
+    }
 }
