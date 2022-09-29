@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="./style.css">
-  <title>National Park Search</title>
 </head>
 <body>
     <h1>National Park Search</h1>
+    <i class='fa fa-home'></i>
+
   <div class="seeSearch"><a href=".">Search a location</a></div>
   <main>
     <!--First SCREEN-->
@@ -17,16 +11,18 @@
       <h2>Search a location</h2>
       <p>Search the ideal National Park for you.
       </p>
+
+      <form action="GET" id = "submissionSection">
+        <input list="pastCitiesList" type="text" name="mainSearch" id="mainSearch" placeholder="Search a state abbreviation.">
+        <button type="button" id="searchBtn">Search!</button>
+      </form>
+
       <!--Search-->
       <button id="homeButton">Home</button>
-    </div>
-    <div id="" class="hide">
-      <h1></h1>
-      <p><span id="Results"></span>.</p>
-        <button id="navBtn">NavBar</button>
-      </p>
-    </div>
+    
   </main>
-  <script src="./assets/js/script.js"></script>
+  script src="./homepage.js"></script>
+
+  <script src="./homepage.js"></script>
 </body>
 </html>
