@@ -2,7 +2,7 @@
 var parksEl = document.getElementById('parks');//Container for parks card
 var searchBtn = document.querySelector("#searchBtn"); //Need to link to the class/ID of button
 var userSearch = document.getElementById("mainSearch"); //Need to link to the input id
-var pastSearches = [];
+var pastSearches = JSON.parse(localStorage.getItem("prevArea")) || [];
 
 //Hides search bar
 function hideSearch() {
