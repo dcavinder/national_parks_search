@@ -24,6 +24,15 @@ function parkSearch() {
     if (!userSearch.value) {
         tryAgain();
         return;
+    } else {
+        //Adds most recent search to dropdown
+        var pastCityOpt = document.createElement("option")
+        pastCityOpt.value = userSearch.value
+        pastCityOpt.innerHTML = userSearch.value
+        $('#pastCitiesList').append(pastCityOpt);
+        //Store past searches
+        pastSearches.push(userSearch.value);
+        localStorage.setItem("prevArea", JSON.stringify(pastSearches));
     };
 
     var requestParksInfo = "https://developer.nps.gov/api/v1/parks?q=" + userSearch.value + "&api_key=bHs0Q9w8lnRTDFP2HjYarQQNliJq6mm7aFKTeF54";
@@ -34,6 +43,7 @@ function parkSearch() {
     })    
     .then(function (data){
         console.log(data);
+        userSearch.value = ""        
         for (var i = 0; i < data.data.length; i++) {
             var parkCard = document.createElement('div');
             parkCard.className = 'park-card';
@@ -56,16 +66,7 @@ function parkSearch() {
           }
     }) 
     
-    
-    //Store past searches
-    .then( function saveSearch() {
-        pastSearches.push(userSearch.value);
-        console.log(pastSearches);
-        localStorage.setItem("prevArea", JSON.stringify(pastSearches));
-    })
-    .then(window.location.href = "./results.html"); 
-
-      hideSearch()
+    .then(hideSearch());   
          
 };
     
