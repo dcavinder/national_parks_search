@@ -32,29 +32,44 @@ function parkSearch() {
     .then(function (response) {
         return response.json();
     })    
-    .then(function (data){
-        console.log(data);
+    .then(function (data) {
+        console.log(data)
         for (var i = 0; i < data.data.length; i++) {
-            var parkCard = document.createElement('div');
-            parkCard.className = 'park-card';
-            var fullParkName = document.createElement('h3');
-            var parkImage = document.createElement('img');
-            var parkAddress = document.createElement('p');
-            var parkDirections = document.createElement('p');
-            var parkFees = document.createElement('p');
-            fullParkName.textContent = data.data[i].fullName;
-            parkImage.textContent = data.data[i].images[0].url;
-            parkAddress.textContent = 'Address:' + data.data[i].addresses[0].line1 + ', ' +
-            data.data[i].addresses[0].city + ', ' + data.data[i].addresses[0].stateCode +', ' + data.data[i].addresses[0].postalCode;
-            parkDirections.textContent = 'Directions:' + data.data[i].directionsInfo;
-            //parkFees.textContent = 'Entrance Fees:' + data.data[i].entranceFees.cost[0] + '-' + data.data[i].entranceFees.cost[-1];
-            parkCard.append(fullParkName);
-            parkCard.append(parkAddress);
-            parkCard.append(parkDirections);
-            parkCard.append(parkFees);
-            parksEl.append(parkCard)
-          }
-    }) 
+          var parkCard = document.createElement('div');
+          parkCard.className = 'park-card';
+          var fullParkName = document.createElement('h3');
+          var parkImage = document.createElement('img');
+          var parkAddress = document.createElement('p');
+          var parkDirections = document.createElement('p');
+          var parkFees = document.createElement('p');
+          fullParkName.textContent = data.data[i].fullName;
+          parkImage.textContent = data.data[i].images[0].url;
+          parkAddress.textContent = 'Address:' + data.data[i].addresses[0].line1 + ', ' +
+          data.data[i].addresses[0].city + ', ' + data.data[i].addresses[0].stateCode +', ' + data.data[i].addresses[0].postalCode;
+          parkDirections.textContent = 'Directions:' + data.data[i].directionsInfo;
+          parkCard.append(fullParkName);
+          parkCard.append(parkAddress);
+          parkCard.append(parkDirections);
+          parkCard.append(parkFees);
+          let parkCity = data.data[i].addresses[0].city
+          var weatherApi ='https://api.openweathermap.org/data/2.5/weather?q=' + parkCity + '&units=imperial&appid=7f42e217c46960a881c3b83169db922f';
+          fetch(weatherApi) 
+          .then(function (response) {
+              return response.json();
+          })    
+          .then(function (info){
+          console.log(data);
+          var parkWeather = document.createElement('div')
+          var parkTemp = document.createElement('div')
+          parkTemp.textContent = info.main.temp;
+          parkWeather.textContent = info.weather[0].description;
+          parkCard.append(parkTemp);
+          parksEl.append(parkCard);
+          });
+        }
+      });
+  
+  };
     
     
     //Store past searches
@@ -67,7 +82,7 @@ function parkSearch() {
 
       hideSearch()
          
-};
+    };
     
 
 
