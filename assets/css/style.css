@@ -3,16 +3,13 @@
 }
 
 body {
-
-    background-image: url("./assets/images/Yosemite-National-Park_wallpaper_051.jpg");
-    background-size: cover ;
-    background-position: cover;
-    background-color: rgb(254, 254, 254);
-}
-
-nav {
     display: flex;
-    justify-content: flex-start;
+    background-image: url("../images/Yosemite-National-Park.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
 }
 
 header {
@@ -27,43 +24,54 @@ header h1 {
     margin-bottom: 0%;
 }
 
-header nav {
+.parks {
     display: flex;
-    justify-content: flex-start;
-    background-color: #044e34;
-    font-size: 1rem;
-    color: #ffffff;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10%;
+    margin: 1%;
 }
 
-a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.1s;
-}
-  
-a:hover {
-    color: #000000;
+.park-card {
+    height: 25%;
+    width: 23%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    background-color: rgba(248, 246, 246, 0.7);;
+    margin: 1%;
+    padding: 1%;
 }
 
-.homeButton {
+#homeButton {
     flex-direction: upper-left;
     text-align: left;
     padding-bottom: 0px;
     color: #020202;
 }
   
-.wrapper {
+#submissionSection {
     margin: 100px auto 0 auto;
     max-width: 500px;
     text-align: center;
 }
 
-/*main {
-    
+#mainSearch {
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(119, 147, 119)
+}
 
-}*/
+option {
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 100%;
+    background-color: #274f12;
+}
 
-button {
+#searchBtn {
     display: inline-block;
     margin: 5px;
     cursor: pointer;
@@ -76,27 +84,13 @@ button {
     transition: background-color 0.5s;
 }
 
-button:hover {
-    background-color: #b86827;
-}
- 
-li {
-    padding: 5px;
-    list-style: decimal inside none;
+#searchBtn {
+background-color: #b86827;
 }
 
-.results {
-    flex-direction: column;
-}
-
-.datePicker {
-    color: #ffffff;
-    background-position: center;
-}
-.hide {
-    display: none;
-}
-  
-/*.weatherApp {
-
+.errorMessage {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 2rem; 
+    color: #000000;
 }
