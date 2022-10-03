@@ -7,35 +7,34 @@
    <link rel="stylesheet" href="./assets/css/style.css">
    <title>Park Search</title>
 
-   <h1>National Park Search</h1>
-   <i id = "homeBtn" class='fa fa-home'></i>
-</head>
-<body>
-    <!-- <h1>National Park Search</h1>
-    <i id = "homeBtn" class='fa fa-home'></i> -->
+  </head>
+
+  <body>
+
+  <header>
+    <h1>National Park Search</h1>
+    <i id = "homeBtn" class='fa fa-home'></i>
+  </header>
 
   <div class="seeSearch"><a href=".">Search a location</a></div>
   <main>
+
     <!--First SCREEN-->
-    <div  id="submissionSection">
-    <div id="sLocation" class="StartButton">
-      <h2>Search a location</h2>
-      <p>Search the ideal National Park for you.
-      </p>
+      <div id="sLocation" class="StartButton">
+        <h2>Search a location</h2>
+      
 
       <form action="GET" id = "submissionSection">
         <input list="pastCitiesList" type="text" name="mainSearch" id="mainSearch" placeholder="Search a state abbreviation.">
-        <!-- <button type="button" id="searchBtn">Search!</button> -->
+        <button type="button" id="searchBtn">Search!</button>
       </form>
-
-      <!--Search-->
-      <button id="homeButton">Home</button>
-    
+   
       <!-- container for cards -->
       <container id="parks"></container>
 
   </main>
   
-  <script src="./homepage.js"></script>
+  <script src="./script.js"></script>
 </body>
+
 </html>
