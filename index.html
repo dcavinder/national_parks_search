@@ -1,28 +1,40 @@
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./assets/css/style.css">
+   <title>Park Search</title>
+
+  </head>
+
+  <body>
+
+  <header>
     <h1>National Park Search</h1>
-    <i class='fa fa-home'></i>
+    <i id = "homeBtn" class='fa fa-home'></i>
+  </header>
 
   <div class="seeSearch"><a href=".">Search a location</a></div>
   <main>
+
     <!--First SCREEN-->
-    <div class="wrapper">
-    <div id="sLocation" class="StartButton">
-      <h2>Search a location</h2>
-      <p>Search the ideal National Park for you.
-      </p>
+      <div id="sLocation" class="StartButton">
+        <h2>Search a location</h2>
+      
 
       <form action="GET" id = "submissionSection">
         <input list="pastCitiesList" type="text" name="mainSearch" id="mainSearch" placeholder="Search a state abbreviation.">
         <button type="button" id="searchBtn">Search!</button>
       </form>
+   
+      <!-- container for cards -->
+      <container id="parks"></container>
 
-      <!--Search-->
-      <button id="homeButton">Home</button>
-    
   </main>
-  script src="./homepage.js"></script>
-
-  <script src="./homepage.js"></script>
+  
+  <script src="./script.js"></script>
 </body>
+
 </html>
