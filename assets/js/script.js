@@ -113,7 +113,7 @@ async function weather({ data }) {
           parkAddress.innerHTML = 'Address:' + parksReturn.data[i].addresses[0].line1 + ', ' +
           parksReturn.data[i].addresses[0].city + ', ' + parksReturn.data[i].addresses[0].stateCode +', ' + parksReturn.data[i].addresses[0].postalCode;
           parkDirections.innerHTML = 'Directions:' + parksReturn.data[i].directionsInfo;
-          parkTemp.textContent = weatherReturn[i].temp;
+          parkTemp.textContent = 'Temperature:' + weatherReturn[i].temp;
           parkWeatherIcon.src = weatherReturn[i].icon;
           parkweatherDescription.textContent = weatherReturn[i].description;
           parkCard.append(fullParkName);
