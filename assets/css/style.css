@@ -84,7 +84,7 @@ option {
     transition: background-color 0.5s;
 }
 
-#searchBtn {
+#searchBtn:hover {
 background-color: #b86827;
 }
 
