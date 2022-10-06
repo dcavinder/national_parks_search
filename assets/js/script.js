@@ -12,7 +12,7 @@ function init(){
     if (stored) {      
         var dropDowns = document.createElement('datalist')
         dropDowns.setAttribute('id', 'pastCitiesList');
-        $('mainSearch').append(dropDowns)
+        $('#mainSearch').append(dropDowns)
 
         for (var i = 0; i < stored.length; i++) {
             var pastCityOpt = document.createElement('option')
