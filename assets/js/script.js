@@ -108,14 +108,14 @@ async function weather({ data }) {
           var parkTemp = document.createElement('p');
           var parkWeatherIcon = document.createElement('img');
           var parkweatherDescription = document.createElement('p');
-          fullParkName.innerHTML = parksReturn.data[i].fullName;
-          parkImage.src = parksReturn.data[i].images[1].url;
-          parkAddress.innerHTML = 'Address:' + parksReturn.data[i].addresses[0].line1 + ', ' +
-          parksReturn.data[i].addresses[0].city + ', ' + parksReturn.data[i].addresses[0].stateCode +', ' + parksReturn.data[i].addresses[0].postalCode;
-          parkDirections.innerHTML = 'Directions:' + parksReturn.data[i].directionsInfo;
-          parkTemp.textContent = 'Temperature:' + weatherReturn[i].temp;
-          parkWeatherIcon.src = weatherReturn[i].icon;
-          parkweatherDescription.textContent = weatherReturn[i].description;
+          fullParkName.innerHTML = parksReturn.data[i]?.fullName;
+          parkImage.src = parksReturn.data[i].images[1]?.url;
+          parkAddress.innerHTML = 'Address:' + parksReturn.data[i]?.addresses[0].line1 + ', ' +
+          parksReturn.data[i]?.addresses[0].city + ', ' + parksReturn.data[i]?.addresses[0].stateCode +', ' + parksReturn.data[i]?.addresses[0].postalCode;
+          parkDirections.innerHTML = 'Directions:' + parksReturn.data[i]?.directionsInfo;
+          parkTemp.textContent = 'Temperature:' + weatherReturn[i]?.temp;
+          parkWeatherIcon.src = weatherReturn[i]?.icon;
+          parkweatherDescription.textContent = weatherReturn[i]?.description;
           parkCard.append(fullParkName);
           parkCard.append(parkImage);
           parkCard.append(parkAddress);
