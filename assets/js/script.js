@@ -89,7 +89,7 @@ async function weather({ data }) {
   }
   
   async function getApi() {
-    var npsApiUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=' + userSearch.value + '&limit=8&start=0&q=National%20Park&api_key=bHs0Q9w8lnRTDFP2HjYarQQNliJq6mm7aFKTeF54';
+    var npsApiUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=' + userSearch.value + '&limit=8&start=0&q=National%20Park&api_key=hOiAaZugjjcTZzW8qpARje9bqdxSdmlPnl884z38';
   console.log(userSearch.value)
     hideSearch()
     var response = await fetch(npsApiUrl)
@@ -109,20 +109,44 @@ async function weather({ data }) {
           var parkWeatherIcon = document.createElement('img');
           var parkweatherDescription = document.createElement('p');
           fullParkName.innerHTML = parksReturn.data[i].fullName;
-          parkImage.src = parksReturn.data[i].images[1].url;
+          if (parksReturn.data[i].images[1].url = null || undefined) {
+          parkImage.src = url('../images/imageunavailable.jpeg')
+          } else {  
+          parkImage.src = parksReturn.data[i].images[1].url
+          };
+          if (parksReturn.data[i].addresses[0].line1 = null || undefined) {
+          parkAddress.innerHTML = 'Sorry, There is no address information for this park.'
+          } else { 
           parkAddress.innerHTML = 'Address:' + parksReturn.data[i].addresses[0].line1 + ', ' +
           parksReturn.data[i].addresses[0].city + ', ' + parksReturn.data[i].addresses[0].stateCode +', ' + parksReturn.data[i].addresses[0].postalCode;
-          parkDirections.innerHTML = 'Directions:' + parksReturn.data[i].directionsInfo;
-          parkTemp.textContent = 'Temperature:' + weatherReturn[i].temp;
-          parkWeatherIcon.src = weatherReturn[i].icon;
-          parkweatherDescription.textContent = weatherReturn[i].description;
+          };
+          if (parksReturn.data[i].directionsInfo = null || undefined){
+          parkDirections.innerHTML = 'Sorry, There are no directions listed for this park.'
+          } else {
+          parkDirections.innerHTML = 'Directions:' + parksReturn.data[i].directionsInfo
+          };
+          if (weatherReturn[i].temp = null || undefined) {
+          parkTemp.textContent = 'Sorry, There is no current temperature for this park.'
+          } else {
+          parkTemp.textContent = 'Temperature:' + weatherReturn[i].temp
+          };
+          if (weatherReturn[i].icon = null || undefined) {
+          parkWeatherIcon.src = ''
+          } else {
+          parkWeatherIcon.src = weatherReturn[i].icon
+          };
+          if (weatherReturn[i].description = null || undefined) {
+          parkweatherDescription.textContent = 'Sorry, There is no current weather infotmation for this park.'
+          } else {
+          parkweatherDescription.textContent = weatherReturn[i].description
+          };
           parkCard.append(fullParkName);
           parkCard.append(parkImage);
           parkCard.append(parkAddress);
           parkCard.append(parkDirections);
           parkCard.append(parkFees);
           parkCard.append(parkTemp);
-          parkCard.append(parkWeatherIcon);
+          //parkCard.append(parkWeatherIcon);
           parkCard.append(parkweatherDescription);
           parksEl.append(parkCard);
         }
